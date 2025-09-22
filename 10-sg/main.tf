@@ -1,5 +1,5 @@
 module "frontend" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = var.sg_name
   sg_description = var.sg_description
   project = var.project
@@ -8,7 +8,7 @@ module "frontend" {
 }
 
 module "baistion" {
-    source = "../../sg-module"
+    source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = var.bastion_name
   sg_description = var.bastion_description
   project = var.project
@@ -17,7 +17,7 @@ module "baistion" {
 }
 
 module "backen_alb" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   project = var.project
   environment = var.environment
   sg_name = "backend-alb"
@@ -26,7 +26,7 @@ module "backen_alb" {
 }
 
 module "vpn" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   project = var.project
   environment = var.environment
   sg_name = "vpn"
@@ -35,7 +35,7 @@ module "vpn" {
 }
 
 module "mongodb" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "mongodb"
   sg_description = "mongodb-sg"
   project = var.project
@@ -44,7 +44,7 @@ module "mongodb" {
 }
 
 module "redis" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "redis"
   sg_description = "redis-sg"
   project = var.project
@@ -53,7 +53,7 @@ module "redis" {
 }
 
 module "rabbitmq" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "rabbitmq"
   sg_description = "rabbitmq-sg"
   project = var.project
@@ -62,7 +62,7 @@ module "rabbitmq" {
 }
 
 module "mysql" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "mysql"
   sg_description = "mysql-sg"
   project = var.project
@@ -72,7 +72,7 @@ module "mysql" {
 }
 
 module "catalogue" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "catalogue"
   sg_description = "catalogue-sg"
   project = var.project
@@ -81,7 +81,7 @@ module "catalogue" {
 }
 
 module "user" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "user"
   sg_description = "user-sg"
   project = var.project
@@ -90,7 +90,7 @@ module "user" {
 }
 
 module "cart" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "cart"
   sg_description = "cart-sg"
   project = var.project
@@ -99,7 +99,7 @@ module "cart" {
 }
 
 module "shipping" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "shipping"
   sg_description = "shipping-sg"
   project = var.project
@@ -108,7 +108,7 @@ module "shipping" {
 }
 
 module "payment" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "payment"
   sg_description = "payment-sg"
   project = var.project
@@ -117,7 +117,7 @@ module "payment" {
 }
 
 module "frontend_alb" {
-  source = "../../sg-module"
+  source = "git::https://github.com/ShivanathBabu/sg-module.git?ref=main"
   sg_name = "frontend_alb"
   sg_description = "frontend_alb-sg"
   project = var.project
