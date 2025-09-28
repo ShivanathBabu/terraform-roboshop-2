@@ -494,4 +494,78 @@ resource "aws_security_group_rule" "payment_rabbitmq" {
   security_group_id = module.rabbitmq.sg_id
 }
 
+# bastion
 
+resource "aws_security_group_rule" "mongodb_bastion" {
+  type = "ingress"
+  from_port = var.mongodb_ports[count.index]
+  to_port = var.mongodb_ports[count.index]
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.mongodb.sg_id
+}
+
+resource "aws_security_group_rule" "redis_bastion" {
+  type = "ingress"
+  from_port = var.redis_ports[count.index]
+  to_port = var.redis_ports[count.index]
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.redis.sg_id
+}
+
+resource "aws_security_group_rule" "rabbitmq_bastion" {
+  type = "ingress"
+  from_port = var.rabbitmq_ports[count.index]
+  to_port = var.rabbitmq_ports[count.index]
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.rabbitmq.sg_id
+}
+
+resource "aws_security_group_rule" "mysql_bastion" {
+  type = "ingress"
+  from_port = var.mysql_ports[count.index]
+  to_port = var.mysql_ports[count.index]
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.mysql.sg_id
+}
+
+# bastion component
+
+resource "aws_security_group_rule" "bastion_user" {
+  type = "ingress"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.user.sg_id
+}
+
+resource "aws_security_group_rule" "bastion_cart" {
+  type = "ingress"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.cart.sg_id
+}
+
+resource "aws_security_group_rule" "bastion_shipping" {
+  type = "ingress"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.shipping.sg_id
+}
+
+resource "aws_security_group_rule" "bastion_payment" {
+  type = "ingress"
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.payment.sg_id
+}
