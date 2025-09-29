@@ -497,38 +497,42 @@ resource "aws_security_group_rule" "payment_rabbitmq" {
 # bastion
 
 resource "aws_security_group_rule" "mongodb_bastion" {
+  count = length(var.mongodb_ports)
   type = "ingress"
   from_port = var.mongodb_ports[count.index]
   to_port = var.mongodb_ports[count.index]
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.mongodb.sg_id
 }
 
 resource "aws_security_group_rule" "redis_bastion" {
+  count = length(var.redis_ports)
   type = "ingress"
   from_port = var.redis_ports[count.index]
   to_port = var.redis_ports[count.index]
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.redis.sg_id
 }
 
 resource "aws_security_group_rule" "rabbitmq_bastion" {
+  count = length(var.rabbitmq_ports)
   type = "ingress"
   from_port = var.rabbitmq_ports[count.index]
   to_port = var.rabbitmq_ports[count.index]
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.rabbitmq.sg_id
 }
 
 resource "aws_security_group_rule" "mysql_bastion" {
+  count = length(var.mysql_ports)
   type = "ingress"
   from_port = var.mysql_ports[count.index]
   to_port = var.mysql_ports[count.index]
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.mysql.sg_id
 }
 
@@ -539,7 +543,7 @@ resource "aws_security_group_rule" "bastion_user" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.user.sg_id
 }
 
@@ -548,7 +552,7 @@ resource "aws_security_group_rule" "bastion_cart" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.cart.sg_id
 }
 
@@ -557,7 +561,7 @@ resource "aws_security_group_rule" "bastion_shipping" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.shipping.sg_id
 }
 
@@ -566,6 +570,6 @@ resource "aws_security_group_rule" "bastion_payment" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
-  source_security_group_id = module.bastion.sg_id
+  source_security_group_id = module.baistion.sg_id
   security_group_id = module.payment.sg_id
 }
